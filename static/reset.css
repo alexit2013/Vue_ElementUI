@@ -1,0 +1,187 @@
+@charset "UTF-8";
+
+/*
+  全局样式文件
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3,
+h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address,
+big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot,
+thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+
+html,body{
+  height: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+
+:focus {
+  outline: 0;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+
+a img, iframe {
+  border: none;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+input, textarea, select, button {
+  font-size: 100%;
+  font-family: inherit;
+}
+
+select {
+  margin: inherit;
+}
+
+a{
+  text-decoration: none;
+}
+
+fieldset {
+  display: block;
+  -webkit-margin-start: 2px;
+  -webkit-margin-end: 2px;
+  -webkit-padding-before: 0.35em;
+  -webkit-padding-start: 0.75em;
+  -webkit-padding-end: 0.75em;
+  -webkit-padding-after: 0.625em;
+  min-width: -webkit-min-content;
+  border-width: 2px;
+  border-style: groove;
+  border-color: threedface;
+  border-image: initial;
+}
+
+legend {
+  display: block;
+  -webkit-padding-start: 2px;
+  -webkit-padding-end: 2px;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+}
+
+
+/* 选中文本色 */
+::selection {
+  background:#ff9900;
+  color:#fff;
+}
+
+/* 图文对齐 */
+.vam{
+  vertical-align: middle;
+}
+.vat{
+  vertical-align: top;
+}
+.vab{
+  vertical-align: bottom;
+}
+
+/* 外边距 */
+.mg-t-5{
+  margin-top: 5px;
+}
+
+.mg-t-10{
+  margin-top: 10px;
+}
+
+.mg-t-15{
+  margin-top: 15px;
+}
+
+.mg-t-20{
+  margin-top: 20px;
+}
+
+.mg-b-5{
+  margin-bottom: 5px;
+}
+
+.mg-b-10{
+  margin-bottom: 10px;
+}
+
+.mg-b-15{
+  margin-bottom: 15px;
+}
+
+.mg-b-20{
+  margin-bottom: 20px;
+}
+
+.mg-l-5{
+  margin-left: 5px;
+}
+
+.mg-l-10{
+  margin-left: 10px;
+}
+
+.mg-l-15{
+  margin-left: 15px;
+}
+
+.mg-l-20{
+  margin-left: 20px;
+}
+
+.mg-r-5{
+  margin-right: 5px;
+}
+
+.mg-r-10{
+  margin-right: 10px;
+}
+
+.mg-r-15{
+  margin-right: 15px;
+}
+
+.mg-r-20{
+  margin-right: 20px;
+}
+
+/* 字体大小 */
+.fs-18{
+  font-size: 18px;
+}
+.fs-20{
+  font-size: 20px;
+}
+.fs-22{
+  font-size: 22px;
+}
+.fs-25{
+  font-size: 25px;
+}
+
+
