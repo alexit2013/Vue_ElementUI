@@ -5,14 +5,16 @@ import Page404 from './../pages/Page404.vue'
 import PageRegister from '../pages/register/PageRegister.vue'
 import RoleManage from './../components/RoleManage.vue'
 import OperatorManage from './../components/OperatorManage.vue'
+import MainWelcome from './../components/MainWelcome.vue'
 
 Vue.use(Router);
 
-export default new Router({
+var router =  new Router({
+  scrollBehavior: ()=>({y:0}), //滚动条起始位置
   routes: [
     {
       path: '/',
-      redirect: '/PageLogin'
+      redirect: '/MainWelcome'
     },
     {
       path: '/PageLogin',
@@ -24,6 +26,7 @@ export default new Router({
       name: 'PageMain',
       component: PageMain,
       children: [
+        { path: '/MainWelcome', name: '欢迎页', component: MainWelcome },
         { path: '/RoleManage', name: '角色管理', component: RoleManage },
         { path: '/OperatorManage', name: '操作员管理', component: OperatorManage },
       ]
@@ -40,4 +43,16 @@ export default new Router({
       hidden: true
     }
   ]
-})
+});
+
+
+router.beforeEach((to, from, next) => {
+
+  console.log('改变了');
+
+
+  next()   // 进行下一个钩子函数
+});
+
+
+export default router;

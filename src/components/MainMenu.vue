@@ -1,86 +1,15 @@
 <template>
 
   <div class="main-left-menu">
-      <el-menu class="main-menu" :default-active="$route.path" :unique-opened="true" :router="true" :collapse="menuCollapse" theme="dark">
 
-        <el-submenu index="1">
-          <template slot="title"><i class="fa fa-cog menu-icon" aria-hidden="true"></i>系统管理</template>
-          <el-menu-item index="/RoleManage">角色管理</el-menu-item>
-          <el-menu-item index="/OperatorManage">操作员管理</el-menu-item>
-        </el-submenu>
-
-        <el-submenu index="2">
-          <template slot="title"><i class="fa fa-bar-chart menu-icon" aria-hidden="true"></i>基础数据管理</template>
-          <el-menu-item index="2-1">字典数据</el-menu-item>
-          <el-menu-item index="2-2">证件类型</el-menu-item>
-          <el-menu-item index="2-3">事件类型</el-menu-item>
-          <el-menu-item index="2-4">地区管理</el-menu-item>
-          <el-menu-item index="2-5">网格管理</el-menu-item>
-          <el-menu-item index="2-6">部门管理</el-menu-item>
-          <el-menu-item index="2-7">人员类型</el-menu-item>
-          <el-menu-item index="2-7">房屋类型</el-menu-item>
-          <el-menu-item index="2-7">人员管理</el-menu-item>
-          <el-menu-item index="2-7">房屋管理</el-menu-item>
-          <el-menu-item index="2-7">摄像头管理</el-menu-item>
-        </el-submenu>
-
-        <el-submenu index="3">
-          <template slot="title"><i class="fa fa-sitemap menu-icon" aria-hidden="true"></i>工作流管理</template>
-          <el-menu-item index="3-1">流程管理</el-menu-item>
-          <el-menu-item index="3-2">环节管理</el-menu-item>
-          <el-menu-item index="3-2">活动管理</el-menu-item>
-        </el-submenu>
-
-        <el-submenu index="4">
-          <template slot="title"><i class="fa fa-book menu-icon" aria-hidden="true"></i>工单管理</template>
-          <el-menu-item index="4-1">事件上报</el-menu-item>
-          <el-menu-item index="4-2">12345热线</el-menu-item>
-          <el-menu-item index="4-2">领导交办</el-menu-item>
-          <el-menu-item index="4-2">事件工单查询</el-menu-item>
-          <el-menu-item index="4-2">回访工单查询</el-menu-item>
-        </el-submenu>
-
-        <el-submenu index="5">
-          <template slot="title"><i class="fa fa-bell menu-icon" aria-hidden="true"></i>应急预案</template>
-          <el-menu-item index="5-1">预案管理</el-menu-item>
-          <el-menu-item index="5-2">预案流程设置</el-menu-item>
-          <el-menu-item index="5-2">预案通知模板</el-menu-item>
-          <el-menu-item index="5-2">预案启动</el-menu-item>
-          <el-menu-item index="5-2">预案日志查询</el-menu-item>
-          <el-menu-item index="5-2">预案工单查询</el-menu-item>
-        </el-submenu>
-
-        <el-submenu index="6">
-          <template slot="title"><i class="fa fa-user menu-icon" aria-hidden="true"></i>个人事务</template>
-          <el-menu-item index="6-1">事件待办</el-menu-item>
-          <el-menu-item index="6-2">回访待办</el-menu-item>
-          <el-menu-item index="6-2">消息中心</el-menu-item>
-          <el-menu-item index="6-2">预案通知</el-menu-item>
-        </el-submenu>
-
-        <el-submenu index="8">
-          <template slot="title"><i class="fa fa-pie-chart menu-icon" aria-hidden="true"></i>数据统计</template>
-          <el-menu-item index="8-1">签到统计</el-menu-item>
-          <el-menu-item index="8-2">求救统计</el-menu-item>
-          <el-menu-item index="8-2">求救统计(按网格)</el-menu-item>
-          <el-menu-item index="8-2">求救统计(按时间段)</el-menu-item>
-          <el-menu-item index="8-2">平台事件统计</el-menu-item>
-          <el-menu-item index="8-2">事件类型统计</el-menu-item>
-          <el-menu-item index="8-2">地区统计</el-menu-item>
-          <el-menu-item index="8-2">来源统计</el-menu-item>
-          <el-menu-item index="8-2">轨迹查询</el-menu-item>
-          <el-menu-item index="8-2">实时轨迹(按事件)</el-menu-item>
-          <el-menu-item index="8-2">实时轨迹(按时间)</el-menu-item>
-          <el-menu-item index="8-2">事件轨迹</el-menu-item>
-          <el-menu-item index="8-2">求救统计(按进度)</el-menu-item>
-          <el-menu-item index="8-2">警报信息</el-menu-item>
-          <el-menu-item index="8-2">网格区域查询</el-menu-item>
-          <el-menu-item index="8-2">水利工程分布</el-menu-item>
-          <el-menu-item index="8-2">避灾场所分布</el-menu-item>
-          <el-menu-item index="8-2">国土地质灾害分布</el-menu-item>
-          <el-menu-item index="8-2">救灾物资分布</el-menu-item>
-        </el-submenu>
-
+      <el-menu class="main-menu" @select="menuSelected" :default-active="$route.path" :unique-opened="true" :router="true" :collapse="menuCollapse" theme="dark">
+        <template v-for="(item, pIndex) in menus">
+          <el-submenu v-if="item.subMenu" :index="pIndex+1+''" :key="item.title">
+            <template slot="title"><i class="menu-icon" :class="[item.menuIcon.split(' ')[0],item.menuIcon.split(' ')[1]]" aria-hidden="true"></i>{{item.title}}</template>
+            <el-menu-item v-for="(subItem, cIndex) in item.subMenu" :key="subItem.title" :index="subItem.linkPath">{{subItem.title}}</el-menu-item>
+          </el-submenu>
+          <el-menu-item v-else :index="item.linkPath"><i class="menu-icon" :class="[item.menuIcon.split(' ')[0],item.menuIcon.split(' ')[1]]" aria-hidden="true"></i>{{item.title}}</el-menu-item>
+        </template>
       </el-menu>
 
   </div>
@@ -92,7 +21,85 @@ export default {
   name: 'MainMenu',
   data () {
     return {
-      menuCollapse: false
+      menuCollapse: false,
+      menus: [
+        {
+          title:"系统管理",
+          linkPath:"",
+          menuIcon:"fa fa-cog",
+          subMenu:[
+            {title:"角色管理",linkPath:"/RoleManage"},
+            {title:"操作员管理",linkPath:"/OperatorManage"}
+          ]
+        },
+        {
+          title:"基础数据管理",
+          linkPath:"",
+          menuIcon:"fa fa-bar-chart",
+          subMenu:[
+            {title:"字典数据",linkPath:"/zzz"},
+            {title:"证件类型",linkPath:"/zzz"},
+            {title:"事件类型",linkPath:"/zzz"},
+            {title:"地区管理",linkPath:"/zzz"}
+          ]
+        },
+        {
+          title:"工作流管理",
+          linkPath:"",
+          menuIcon:"fa fa-sitemap",
+          subMenu:[
+            {title:"流程管理",linkPath:"/zzz"},
+            {title:"环节管理",linkPath:"/zzz"},
+            {title:"活动管理",linkPath:"/zzz"}
+          ]
+        },
+        {
+          title:"工单管理",
+          linkPath:"",
+          menuIcon:"fa fa-book",
+          subMenu:[
+            {title:"事件上报",linkPath:"/zzz"},
+            {title:"12345热线",linkPath:"/zzz"},
+            {title:"领导交办",linkPath:"/zzz"}
+          ]
+        },
+        {
+          title:"应急预案",
+          linkPath:"",
+          menuIcon:"fa fa-bell",
+          subMenu:[
+            {title:"预案管理",linkPath:"/zzz"},
+            {title:"预案流程设置",linkPath:"/zzz"},
+            {title:"预案通知模板",linkPath:"/zzz"}
+          ]
+        },
+        {
+          title:"个人事务",
+          linkPath:"",
+          menuIcon:"fa fa-user",
+          subMenu:[
+            {title:"事件待办",linkPath:"/zzz"},
+            {title:"回访待办",linkPath:"/zzz"},
+            {title:"消息中心",linkPath:"/zzz"}
+          ]
+        },
+        {
+          title:"数据统计",
+          linkPath:"",
+          menuIcon:"fa fa-pie-chart",
+          subMenu:[
+            {title:"签到统计",linkPath:"/zzz"},
+            {title:"求救统计",linkPath:"/zzz"},
+            {title:"求救统计(按网格)",linkPath:"/zzz"}
+          ]
+        },
+        {
+          title:"自定义哈",
+          linkPath:"/lala",
+          menuIcon:"fa fa-pie-chart"
+        }
+
+      ]
     }
   },
   mounted: function () {
@@ -105,12 +112,35 @@ export default {
       alwaysVisible: true
     });
   },
-  props: {
-    menus: {
-      type: Array
-    }
-  },
   methods: {
+    menuSelected: function (indexPath) {
+      for (var item of this.menus) {
+        if(item.subMenu && item.subMenu.length > 0){
+          for (var sItem of item.subMenu) {
+            if(sItem.linkPath === indexPath){
+              var arr = this.$store.state.tabs.filter(function(tItem){
+                return sItem.title === tItem.title;
+              });
+              if(arr.length < 1){
+                this.$store.dispatch('pushTab', {name: indexPath, title: sItem.title});
+              }
+              return;
+            }
+          }
+        }else{
+          if(item.linkPath === indexPath){
+            var arr = this.$store.state.tabs.filter(function(tItem){
+              return item.title === tItem.title;
+            });
+            if(arr.length < 1){
+              this.$store.dispatch('pushTab', {name: indexPath, title: item.title});
+            }
+            return;
+          }
+        }
+
+      }
+    }
 
   }
 }

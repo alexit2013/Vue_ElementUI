@@ -6,21 +6,27 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-//全局组件状态管理
 export const vuex = new Vuex.Store({
     state:{
-      userName:"hello"
+      tabs: [{
+        title: '欢迎使用',
+        name: '/MainWelcome'
+      }]
     },
     mutations:{
-      SHOWUSERNAME(state, str){
-        state.userName = state.userName.split('').reverse().join('');
-        //alert(str);
+      PUSH_TAB(state, tab){
+        state.tabs.push(tab);
+      },
+      SET_TABS(state, tabs){
+        state.tabs = tabs;
       }
     },
     actions: {
-      showUserName( context, str ) {
-        // { commit } commit("SHOWUSERNAME");
-        context.commit("SHOWUSERNAME", str);
+      pushTab({ commit }, tab){
+        commit("PUSH_TAB", tab);
+      },
+      setTabs({ commit }, tabs){
+        commit("SET_TABS", tabs);
       }
   }
 });

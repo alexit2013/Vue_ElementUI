@@ -10,8 +10,13 @@
     <!-- 页面内容主体 -->
     <div class="main-body-content">
 
-      <transition  name="fade" mode="out-in">
-        <router-view></router-view>
+      <!-- 标签页组件 -->
+      <main-tabs></main-tabs>
+
+      <transition name="el-fade-in-linear">
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </transition>
 
     </div>
@@ -22,17 +27,17 @@
 <script>
   import MainNav from '../components/MainNav.vue'
   import MainMenu from '../components/MainMenu.vue'
+  import MainTabs from '../components/MainTabs.vue'
 export default {
   name: 'PageMain',
-  components: { MainNav, MainMenu },
+  components: { MainNav, MainMenu, MainTabs },
   data () {
     return {
-      menuCollapse: false
+      menuCollapse: false,
     }
   },
   created: function () {
-      // $parent  $children:[]
-    //this.$root.hello();
+
   },
   methods: {
 
@@ -41,13 +46,6 @@ export default {
 </script>
 
 <style scoped>
-
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity .1s
-  }
-  .fade-enter, .fade-leave-to  {
-    opacity: 0
-  }
 
   .main-body-content{
     position: absolute;
