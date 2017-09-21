@@ -10,7 +10,7 @@
     <!-- 页面内容主体 -->
     <div class="main-body-content">
 
-  <!--    <div v-add-tab="tab">添加标签</div>-->
+    <!--<div v-add-tab="tab">添加标签</div>-->
 
       <!-- 标签页组件 -->
       <main-tabs></main-tabs>
@@ -36,7 +36,7 @@ export default {
   data () {
     return {
       menuCollapse: false,
-      tab: {title:'操作员',name:'/OperatorManage'}
+      tab: {title:'指令添加的Tab',name:'/OperatorManage'}
     }
   }
 }
