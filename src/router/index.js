@@ -50,7 +50,7 @@ const router =  new Router({
 
 /* 路由钩子 */
 router.beforeEach((to, from, next) => {
-  next()   // 进行下一个钩子函数，如果传入一个路由地址，将改变航向
+  next()   // 继续跳转，如果传入一个路由地址，将改变航向，如果传入false，将取消导航
 });
 
 

@@ -4,10 +4,10 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import elementUI from 'element-ui'
-import slimscroll from 'jquery-slimscroll'
+import 'jquery-slimscroll'
 import echarts from 'echarts'
 import store from './store/index'
-import directives from './directives/global'
+import './directives/global'
 
 import './../static/reset.css'
 import 'element-ui/lib/theme-default/index.css'
@@ -20,7 +20,6 @@ Vue.prototype.$http = axios;
 Vue.prototype.echarts = echarts;
 
 Vue.use(elementUI);
-directives();
 
 new Vue({
   el: '#app',
