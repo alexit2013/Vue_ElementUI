@@ -6,18 +6,17 @@
 </template>
 
 <script>
-
+  import { mapGetters } from 'vuex'
 export default {
   name: 'Page404',
   data () {
     return {
-
     }
   },
   computed: {
-      tabs: function () {
-        return this.$store.state.tabs;
-      }
+    ...mapGetters([
+        'tabs'
+    ])
   }
 }
 </script>

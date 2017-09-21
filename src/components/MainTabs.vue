@@ -13,6 +13,7 @@
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MainTabs',
   data () {
@@ -20,22 +21,26 @@ export default {
     }
   },
   computed: {
-    tabs: function () {
-      return this.$store.state.tabs;
-    }
+    ...mapGetters([
+        'tabs'
+    ])
   },
   methods: {
+    ...mapActions([
+      'clearTabs',
+      'setTabs'
+    ]),
     tabSelected: function (tab) {
       this.$router.push(this.tabs[tab.index].name);
     },
     tabRemove: function (name) {
-      if(this.$store.state.tabs.length > 1){
+      if(this.tabs.length > 1){
         if(name===this.tabs[0].name){
-          this.$store.dispatch('clearTabs');
+          this.clearTabs();
           this.$route.path !== this.tabs[0].name && this.$router.push(this.tabs[0].name);
           return;
         }
-        this.$store.dispatch('setTabs', this.tabs.filter(function(item){
+        this.setTabs(this.tabs.filter(function(item){
           return item.name !== name;
         }));
         this.$router.push(this.tabs[this.tabs.length-1].name);

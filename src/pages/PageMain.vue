@@ -38,15 +38,6 @@ export default {
       menuCollapse: false,
       tab: {title:'操作员',name:'/OperatorManage'}
     }
-  },
-  created: function () {
-
-  },
-  activated: function () {
-
-  },
-  methods: {
-
   }
 }
 </script>
