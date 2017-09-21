@@ -145,22 +145,7 @@ export default {
     user-select: none;
     overflow-y: auto;
     overflow-x: hidden;
-
-    /* IE下自定义滚动条样式 */
-    /*scrollbar-3dlight-color: transparent;
-    scrollbar-highlight-color: transparent;
-    scrollbar-face-color: transparent;
-    scrollbar-arrow-color: transparent;
-    scrollbar-shadow-color: transparent;
-    scrollbar-dark-shadow-color: transparent;
-    scrollbar-base-color: transparent;
-    scrollbar-track-color: transparent;*/
   }
-
-  /* chrome下自定义滚动条样式 */
-  /*.main-left-menu::-webkit-scrollbar {
-    width: 0;
-  }*/
 
   .menu-icon{
     display: inline-block;

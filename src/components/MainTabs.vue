@@ -20,6 +20,11 @@ export default {
     return {
     }
   },
+  mounted: function () {
+    if(ls.get('tabs').length > 0 && this.$route.path !== this.tabs[0].name){
+      this.setTabs(ls.get('tabs'));
+    }
+  },
   computed: {
     ...mapGetters([
         'tabs'

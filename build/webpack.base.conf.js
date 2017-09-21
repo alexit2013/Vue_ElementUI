@@ -25,7 +25,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'jquery': 'jquery'
+      'jquery': 'jquery',
+      'lockr': 'lockr'
     },
     symlinks: false
   },
@@ -33,7 +34,8 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       $: "jquery",
-      jQuery: "jquery"
+      jQuery: "jquery",
+      ls: "lockr"
     })
   ],
   module: {

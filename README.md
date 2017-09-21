@@ -30,5 +30,9 @@ npm run build
 成功/完成：<i class="fa fa-check-circle" aria-hidden="true"></i>
 失败：<i class="fa fa-times-circle" aria-hidden="true"></i>
 
-
+#使用lockr操作localStorage
+ls.set('username', {age: 15}); //添加
+ls.get('username'); //获取
+Lockr.rm('username'); //删除
+ls.flush(); //释放全部数据
 
