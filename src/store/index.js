@@ -17,7 +17,7 @@ export default new Vuex.Store({
       PUSH_TAB(state, tab){
         state.tabs.filter((item) => {
           return tab.title === item.title;
-        }).length < 1 && (state.tabs.push(tab));
+        }).length < 1 && state.tabs.push(tab);
       },
       SET_TABS(state, tabs){
         state.tabs = tabs;
@@ -34,7 +34,6 @@ export default new Vuex.Store({
         commit("SET_TABS", tabs);
       },
       clearTabs({ commit }){
-
         commit("CLEAR_TABS");
       }
   }

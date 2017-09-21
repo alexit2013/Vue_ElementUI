@@ -1,7 +1,7 @@
 <template>
   <div class="main-header">
 
-      <div class="main-logo">华数智慧抗台指挥系统</div>
+      <div class="main-logo">智慧后台管理系统</div>
 
       <div class="main-header-menus">
 
@@ -35,12 +35,6 @@ export default {
     return {
       menuCollapse: false
     }
-  },
-  props: {
-
-  },
-  methods: {
-
   }
 }
 </script>

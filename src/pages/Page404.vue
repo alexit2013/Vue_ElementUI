@@ -1,8 +1,7 @@
 <template>
   <div id="page404">
     我是404页面~
-    <router-link :to="mainPath">返回首页</router-link>
-    <button @click="showName">点我</button>
+    <router-link :to="tabs[tabs.length-1].name">返回首页</router-link>
   </div>
 </template>
 
@@ -12,19 +11,13 @@ export default {
   name: 'Page404',
   data () {
     return {
-        mainPath: this.$store.state.tabs[this.$store.state.tabs.length-1].name
+
     }
   },
-
-  methods: {
-      showName: function () {
-      }
-  },
-  created () {
-
-  },
   computed: {
-
+      tabs: function () {
+        return this.$store.state.tabs;
+      }
   }
 }
 </script>
