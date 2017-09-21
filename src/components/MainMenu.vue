@@ -118,23 +118,13 @@ export default {
         if(item.subMenu && item.subMenu.length > 0){
           for (var sItem of item.subMenu) {
             if(sItem.linkPath === indexPath){
-              var arr = this.$store.state.tabs.filter(function(tItem){
-                return sItem.title === tItem.title;
-              });
-              if(arr.length < 1){
                 this.$store.dispatch('pushTab', {name: indexPath, title: sItem.title});
-              }
               return;
             }
           }
         }else{
           if(item.linkPath === indexPath){
-            var arr = this.$store.state.tabs.filter(function(tItem){
-              return item.title === tItem.title;
-            });
-            if(arr.length < 1){
               this.$store.dispatch('pushTab', {name: indexPath, title: item.title});
-            }
             return;
           }
         }

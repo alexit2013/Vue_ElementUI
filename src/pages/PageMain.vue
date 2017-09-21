@@ -10,10 +10,12 @@
     <!-- 页面内容主体 -->
     <div class="main-body-content">
 
+  <!--    <div v-add-tab="tab">添加标签</div>-->
+
       <!-- 标签页组件 -->
       <main-tabs></main-tabs>
 
-      <transition name="el-fade-in-linear">
+      <transition name="el-zoom-in-center">
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
@@ -34,9 +36,13 @@ export default {
   data () {
     return {
       menuCollapse: false,
+      tab: {title:'操作员',name:'/OperatorManage'}
     }
   },
   created: function () {
+
+  },
+  activated: function () {
 
   },
   methods: {

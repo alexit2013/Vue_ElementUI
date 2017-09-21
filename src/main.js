@@ -6,7 +6,8 @@ import axios from 'axios'
 import elementUI from 'element-ui'
 import slimscroll from 'jquery-slimscroll'
 import echarts from 'echarts'
-import { vuex } from './vuex/vuex'
+import store from './store/index'
+import directives from './directives/global'
 
 import './../static/reset.css'
 import 'element-ui/lib/theme-default/index.css'
@@ -19,10 +20,11 @@ Vue.prototype.$http = axios;
 Vue.prototype.echarts = echarts;
 
 Vue.use(elementUI);
+directives();
 
 new Vue({
   el: '#app',
-  store:vuex,
+  store:store,
   router,
   template: '<App/>',
   components: { App }
