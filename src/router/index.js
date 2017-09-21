@@ -1,15 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import PageMain from './../pages/PageMain.vue'
-import Page404 from './../pages/Page404.vue'
-import PageRegister from '../pages/register/PageRegister.vue'
-import RoleManage from './../components/RoleManage.vue'
-import OperatorManage from './../components/OperatorManage.vue'
 import MainWelcome from './../components/MainWelcome.vue'
 
 Vue.use(Router);
 
-var router =  new Router({
+/* 异步加载组件 */
+const PageRegister = resolve => require(['../pages/register/PageRegister.vue'], resolve);
+const RoleManage = resolve => require(['./../components/RoleManage.vue'], resolve);
+const OperatorManage = resolve => require(['./../components/OperatorManage.vue'], resolve);
+const Page404 = resolve => require(['./../pages/Page404.vue'], resolve);
+
+
+const router =  new Router({
   scrollBehavior: ()=>({y:0}), //滚动条起始位置
   routes: [
     {
@@ -45,13 +48,9 @@ var router =  new Router({
   ]
 });
 
-
+/* 路由钩子 */
 router.beforeEach((to, from, next) => {
-
-  console.log('改变了');
-
-
-  next()   // 进行下一个钩子函数
+  next()   // 进行下一个钩子函数，如果传入一个路由地址，将改变航向
 });
 
 
