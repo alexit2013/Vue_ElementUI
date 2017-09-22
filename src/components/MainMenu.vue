@@ -118,13 +118,13 @@ export default {
           for (var sItem of item.subMenu) {
             if(sItem.linkPath === indexPath){
                 this.$store.dispatch('pushTab', {name: indexPath, title: sItem.title});
-              return;
+                return;
             }
           }
         }else{
           if(item.linkPath === indexPath){
               this.$store.dispatch('pushTab', {name: indexPath, title: item.title});
-            return;
+              return;
           }
         }
 
@@ -138,9 +138,9 @@ export default {
 <style scoped>
 
   .main-left-menu{
-    display: inline-block;
-    width: 200px;
-    height: 580px;
+    position: absolute;
+    width: 12.5rem;
+    height: 100%;
     background-color: #324157;
     user-select: none;
     overflow-y: auto;

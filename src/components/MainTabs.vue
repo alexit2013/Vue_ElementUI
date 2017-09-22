@@ -21,8 +21,9 @@ export default {
     }
   },
   mounted: function () {
-    if(ls.get('tabs').length > 0 && this.$route.path !== this.tabs[0].name){
-      this.setTabs(ls.get('tabs'));
+    const tabs = ls.get('tabs');
+    if(tabs && tabs.length > 0 && this.$route.path !== this.tabs[0].name){
+        this.setTabs(tabs);
     }
   },
   computed: {

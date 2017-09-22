@@ -21,6 +21,7 @@
           </el-submenu>
 
         </el-menu>
+
       </div>
 
 
@@ -41,18 +42,20 @@ export default {
 
 <style scoped>
 
+  /* 头部导航容器 */
   .main-header{
-    min-width: 100%;
-    height: 60px;
     position: relative;
+    width: 100vw;
+    height: 60px;
+    z-index: 1;
     background-color: #324157;
-    user-select: none;
-    z-index: 3;
     -webkit-box-shadow: 0 0 5px #222;
     -moz-box-shadow: 0 0 5px #222;
     box-shadow: 0 0 5px #222;
+    user-select: none;
   }
 
+  /* 头部导航 > LOGO区域 */
   .main-logo{
     position: absolute;
     left: 25px;
@@ -61,6 +64,7 @@ export default {
     font-size: 25px;
   }
 
+  /* 头部导航 > 功能区域 */
   .main-header-menus{
     position: absolute;
     right: 15px;

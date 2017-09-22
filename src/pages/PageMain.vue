@@ -44,10 +44,14 @@ export default {
 
 <style scoped>
 
+  #app{
+    height: 100%;
+  }
+
   .main-body-content{
     position: absolute;
-    display: inline-block;
-    width: 85.5%;
+    margin-left: 12.5rem;
+    width: 85.4%;
     height: 90.5%;
     overflow-y: auto;
     overflow-x: hidden;
