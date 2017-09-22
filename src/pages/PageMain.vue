@@ -10,7 +10,7 @@
     <!-- 页面内容主体 -->
     <div class="main-body-content">
 
-    <div v-add-tab="tab">添加标签</div>
+    <!--<div v-add-tab="tab">添加标签</div>-->
 
       <!-- 标签页组件 -->
       <main-tabs></main-tabs>
