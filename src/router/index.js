@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import PageMain from './../pages/PageMain.vue'
-import MainWelcome from './../components/MainWelcome.vue'
+import PageMain from 'pages/PageMain.vue'
+import MainWelcome from 'components/MainWelcome.vue'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 Vue.use(Router);
 
+/* 页面加载进度条配置 */
 NProgress.configure({ easing: 'ease', speed: 300, minimum: 0.1, showSpinner: false });
 
 /* 异步加载组件 */
@@ -55,7 +56,7 @@ const router =  new Router({
 /* 路由钩子 */
 router.beforeEach((to, from, next) => {
   NProgress.start();
-  next()   // 继续跳转，如果传入一个路由地址，将改变航向，如果传入false，将取消导航
+  next();   // 继续跳转，如果传入一个路由地址，将改变航向，如果传入false，将取消导航
 });
 
 router.afterEach(() => {

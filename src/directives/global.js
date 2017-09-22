@@ -3,8 +3,8 @@
  */
 
 import Vue from 'vue'
-import store from './../store/index'
-import router from './../router/index'
+import store from 'store/index'
+import router from 'router/index'
 
 /*
  * 点击元素后，添加一个tab

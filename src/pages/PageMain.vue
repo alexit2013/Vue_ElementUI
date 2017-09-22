@@ -15,7 +15,7 @@
       <!-- 标签页组件 -->
       <main-tabs></main-tabs>
 
-      <transition name="el-zoom-in-center">
+      <transition name="fade" mode="out-in">
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
@@ -27,9 +27,9 @@
 </template>
 
 <script>
-  import MainNav from '../components/MainNav.vue'
-  import MainMenu from '../components/MainMenu.vue'
-  import MainTabs from '../components/MainTabs.vue'
+  import MainNav from 'components/MainNav.vue'
+  import MainMenu from 'components/MainMenu.vue'
+  import MainTabs from 'components/MainTabs.vue'
 export default {
   name: 'PageMain',
   components: { MainNav, MainMenu, MainTabs },
@@ -51,6 +51,13 @@ export default {
     height: 90.5%;
     overflow-y: auto;
     overflow-x: hidden;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .1s
+  }
+  .fade-enter, .fade-leave-to{
+    opacity: .5
   }
 
 

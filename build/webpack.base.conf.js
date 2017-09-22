@@ -24,9 +24,18 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
       'jquery': 'jquery',
-      'lockr': 'lockr'
+      'lockr': 'lockr',
+      '@': resolve('src'),
+      'src': path.resolve(__dirname, '../src'),
+      'api': path.resolve(__dirname, '../src/api'),
+      'assets': path.resolve(__dirname, '../src/assets'),
+      'components': path.resolve(__dirname, '../src/components'),
+      'directives': path.resolve(__dirname, '../src/directives'),
+      'pages': path.resolve(__dirname, '../src/pages'),
+      'router': path.resolve(__dirname, '../src/router'),
+      'store': path.resolve(__dirname, '../src/store'),
+      'static': path.resolve(__dirname, '../static')
     },
     symlinks: false
   },
