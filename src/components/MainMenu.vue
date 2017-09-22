@@ -2,7 +2,7 @@
 
   <div class="main-left-menu">
 
-      <el-menu class="main-menu" @select="menuSelected" :default-active="$route.path" :unique-opened="true" :router="true" :collapse="menuCollapse" theme="dark">
+      <el-menu class="main-menu" :collapse="menuCollapse" @select="menuSelected" :default-active="$route.path" :unique-opened="true" :router="true" theme="dark">
         <template v-for="(item, pIndex) in menus">
           <el-submenu v-if="item.subMenu" :index="pIndex+1+''" :key="item.title">
             <template slot="title"><i class="menu-icon" :class="[item.menuIcon.split(' ')[0],item.menuIcon.split(' ')[1]]" aria-hidden="true"></i>{{item.title}}</template>
@@ -103,8 +103,8 @@ export default {
   },
   mounted: function () {
     $('.main-menu').slimScroll({  //自定义滚动条
-      width: '200px',
-      height: '580px',
+      width: '100%',
+      height: '100%',
       color: 'transparent',
       railColor: 'transparent',
       railVisible: true,
@@ -156,11 +156,11 @@ export default {
   }
 
   .el-menu{
+    min-height: 100%;
+    transition: .38s;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-    min-height: 100%;
-    transition: .38s;
   }
 
 
