@@ -4,13 +4,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex';
 import tabs from './modules/tabs';
+import menu from './modules/menu';
 import getters from './getters';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    tabs
+    tabs,
+    menu
   },
   getters
 });

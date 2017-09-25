@@ -3,6 +3,7 @@
  */
 
 export default {
-  tabs: state => state.tabs.tabs
+  tabs: state => state.tabs.tabs,
+  menuShrink: state => state.menu.menuShrink
 }
 

@@ -50,9 +50,11 @@ export default {
 
   .main-body-content{
     position: absolute;
-    margin-left: 12.5rem;
-    width: 85.4%;
+    margin-left: 12.5rem;  /* 4rem */
+    top: 60px;
+    width: 85.4%; /* 95.4% */
     height: 90.5%;
+    transition: .38s;
     overflow-y: auto;
     overflow-x: hidden;
   }

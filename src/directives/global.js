@@ -5,6 +5,7 @@
 import Vue from 'vue'
 import store from 'store/index'
 import router from 'router/index'
+import './global.css'
 
 /*
  * 点击元素后，添加一个tab
@@ -21,6 +22,69 @@ Vue.directive('addTab', {
       router.push('/OperatorManage');
     });
   }
+});
+
+/* 菜单展开/收缩 */
+Vue.directive('menuShrink', {
+    inserted: (el, binding) => {
+        const $el = $(el);
+        const val = binding.value;
+        const isBtn = $el.hasClass('main-menu-shrink-btn');
+        const $menuContainer = $('.main-menu-container');
+        const $mainContainer = $('.main-body-content');
+        const $menuShrink = $menuContainer.find('.main-menu-shrink-btn');
+        /*const $titleAndIcon = $menuContainer.find('.el-submenu__title span, .el-submenu__icon-arrow.el-icon-arrow-down');
+        $titleAndIcon.css({'transition':'.3s', 'opacity':1});*/
+        $el.click(function () {
+
+            if(!store.getters.menuShrink && isBtn){
+                $menuContainer.css('width', '4rem');
+                $mainContainer.css({'width':'95.4%', 'margin-left':'4rem'});
+                $menuShrink.removeClass('rotate-0');
+                $menuShrink.addClass('rotate-90');
+                store.dispatch('changeShrink');
+                /*$titleAndIcon.removeClass('opcity-1');
+                $titleAndIcon.addClass('opcity-0');*/
+            }else if(store.getters.menuShrink){
+                $menuContainer.css('width', '12.5rem');
+                $mainContainer.css({'width':'85.4%', 'margin-left':'12.5rem'});
+                $menuShrink.removeClass('rotate-90');
+                $menuShrink.addClass('rotate-0');
+                store.dispatch('changeShrink');
+                /*$titleAndIcon.removeClass('opcity-0');
+                $titleAndIcon.addClass('opcity-1');*/
+            }
+
+        });
+    }
+});
+
+Vue.directive('menuHover', {
+    inserted: (el, binding) => {
+        const $el = $(el);
+        const val = binding.value;
+        const $subMenu = $el.find('ul.el-menu');
+        const $cloneMenu = $subMenu.clone(true);
+        let timeFlag;
+        $el.hover(
+            function () {
+                if(!store.getters.menuShrink){return}
+                $cloneMenu.hover(function () {
+                    timeFlag && clearTimeout(timeFlag);
+                    $(this).css('display','block');
+                }, function () {
+                   $(this).css('display','none');
+                });
+                $('body').append($cloneMenu.css({'display':'block', 'position':'absolute', 'top':$el.offset().top, 'left':'5rem'}));
+            },
+            function () {
+                if(!store.getters.menuShrink){return}
+                timeFlag = setTimeout(function () {
+                    $cloneMenu.remove();
+                },100)
+            }
+        );
+    }
 });
 
 
