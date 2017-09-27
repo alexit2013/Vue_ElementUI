@@ -29,10 +29,12 @@ npm run build
 信息/提示：<i class="fa fa-info-circle" aria-hidden="true"></i>
 成功/完成：<i class="fa fa-check-circle" aria-hidden="true"></i>
 失败：<i class="fa fa-times-circle" aria-hidden="true"></i>
+不可见：<i class="fa fa-eye-slash" aria-hidden="true"></i>
+可见：<i class="fa fa-eye" aria-hidden="true"></i>
 
 #使用lockr操作localStorage
 ls.set('username', {age: 15}); //添加
 ls.get('username'); //获取
-Lockr.rm('username'); //删除
+ls.rm('username'); //删除
 ls.flush(); //释放全部数据
 

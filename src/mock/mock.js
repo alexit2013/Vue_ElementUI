@@ -4,7 +4,7 @@
 
 import Mock from 'mockjs'
 
-const baseUrl = "http://www.jiekou.cn";
+const baseUrl = process.env.BASE_API;
 const Random = Mock.Random;
 
 export default function(){

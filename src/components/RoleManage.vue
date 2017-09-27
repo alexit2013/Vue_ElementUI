@@ -153,9 +153,8 @@
 </template>
 
 <script>
-  import { getAllUserInfo } from './../api/api'
-  import mock from './../api/mock'
-
+  import mock from 'src/mock/mock'
+  import { getAllUserInfo } from 'api/user/userAPI'
 export default {
   components: {  },
   name: 'RoleManage',
@@ -208,8 +207,21 @@ export default {
 
       var _this = this;
       this.uTableLoading = true;
+
+      /*this.$store.dispatch('getAllUserInfo').then((response)=>{
+        alert(JSON.stringify(response.data))
+      }).catch((err)=>{
+          alert(err)
+      });*/
+
+      /*getAllUserInfo('param').then((response) => {
+        alert(JSON.stringify(response.data));
+      }).catch((err) => {
+        alert(err);
+      });*/
+
       $.ajax({
-        url:'http://www.jiekou.cn/getAllUserInfo',
+        url: `${process.env.BASE_API}/getAllUserInfo`,
         type:'POST',
         async:true,
         dataType:'json',

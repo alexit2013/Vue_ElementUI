@@ -20,6 +20,7 @@
 </template>
 
 <script>
+  import { validRoleRouter } from 'utils/authValidate'
 export default {
   name: 'MainMenu',
   data () {
@@ -117,18 +118,21 @@ export default {
   },
   methods: {
     menuSelected: function (indexPath) {
+      if (!validRoleRouter(indexPath)) {
+        return
+      }
       for (var item of this.menus) {
-        if(item.subMenu && item.subMenu.length > 0){
+        if (item.subMenu && item.subMenu.length > 0) {
           for (var sItem of item.subMenu) {
-            if(sItem.linkPath === indexPath){
-                this.$store.dispatch('pushTab', {name: indexPath, title: sItem.title});
-                return;
+            if (sItem.linkPath === indexPath) {
+              this.$store.dispatch('pushTab', {name: indexPath, title: sItem.title});
+              return;
             }
           }
-        }else{
-          if(item.linkPath === indexPath){
-              this.$store.dispatch('pushTab', {name: indexPath, title: item.title});
-              return;
+        } else {
+          if (item.linkPath === indexPath) {
+            this.$store.dispatch('pushTab', {name: indexPath, title: item.title});
+            return;
           }
         }
 

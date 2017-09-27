@@ -4,9 +4,15 @@ var fs = require('fs')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
+}
+
+
+function resolveApp(relativePath) {
+  return path.resolve(relativePath);
 }
 
 module.exports = {
@@ -35,12 +41,18 @@ module.exports = {
       'pages': path.resolve(__dirname, '../src/pages'),
       'router': path.resolve(__dirname, '../src/router'),
       'store': path.resolve(__dirname, '../src/store'),
+      'utils': path.resolve(__dirname, '../src/utils'),
       'static': path.resolve(__dirname, '../static')
     },
     symlinks: false
   },
-  // 增加一个plugins
   plugins: [
+    new HtmlWebpackPlugin({
+      filename: config.build.index,
+      template: 'index.html',
+      inject: true,
+      favicon: resolveApp('favicon.ico')
+    }),
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",

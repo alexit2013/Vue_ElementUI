@@ -5,6 +5,7 @@ import Vue from 'vue'
 import Vuex from 'vuex';
 import tabs from './modules/tabs';
 import menu from './modules/menu';
+import user from './modules/user';
 import getters from './getters';
 
 Vue.use(Vuex);
@@ -12,7 +13,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   modules: {
     tabs,
-    menu
+    menu,
+    user
   },
   getters
 });
