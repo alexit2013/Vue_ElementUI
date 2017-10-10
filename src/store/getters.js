@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017-09-21 0021.
+ * Created by huangxiaofeng on 2017-09-21 0021.
  */
 
 export default {
@@ -7,6 +7,8 @@ export default {
   menuShrink: state => state.menu.menuShrink,
   token: state => state.user.token,
   userInfo: state => state.user.userInfo,
-  role: state => state.user.role
+  role: state => state.user.role,
+  menus: state => state.menu.menus,
+  authRoutes: start => start.menu.authRoutes
 }
 

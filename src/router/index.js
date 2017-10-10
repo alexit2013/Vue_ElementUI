@@ -11,17 +11,17 @@ const _import = require('./asynLoader');
 export const constantRouterMap =  [
     {
       path: '/',
-      redirect: '/MainWelcome'
-    },
-    {
-      path: '/PageRegister',
-      component: _import('pages/register/PageRegister'),
-      name: 'PageRegister'
+      redirect: '/PageLogin'
     },
     {
       path: '/PageLogin',
       component: _import('pages/PageLogin'),
       name: 'PageLogin'
+    },
+    {
+      path: '/PageRegister',
+      component: _import('pages/register/PageRegister'),
+      name: 'PageRegister'
     },
     {
       path: '/PageMain',
@@ -47,9 +47,7 @@ export const constantRouterMap =  [
 ];
 
 /* 异步路由表 */
-export const asynRouterMap = [
-
-];
+export const asynRouterMap =  [];
 
 export default new Router({
   scrollBehavior: () => ({ y: 0 }),

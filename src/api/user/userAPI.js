@@ -1,14 +1,6 @@
 import fetch from 'utils/fetch'
 import path from 'api/path'
 
-/* 获取所有用户信息（测试） */
-export function getAllUserInfo(params) {
-  return fetch({
-    url: path.GET_USER_INFO,
-    method: 'post'
-  })
-}
-
 /* 用户登录 */
 export function userLogin(userJson) {
   return fetch({
@@ -35,3 +27,15 @@ export function updateUserInfo(userInfo) {
     data: userInfo
   })
 }
+
+/* 获取用户权限路由 */
+export function getAuthRoutes(role) {
+  return fetch({
+    url: path.GET_AUTH_ROUTES,
+    method: 'post',
+    data: {"role": role}
+  })
+}
+
+export default { userLogin, getUserInfo, updateUserInfo, getAuthRoutes }
+

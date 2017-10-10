@@ -20,93 +20,21 @@
 </template>
 
 <script>
-  import { validRoleRouter } from 'utils/authValidate'
+  import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MainMenu',
   data () {
-    return {
-      menus: [
-        {
-          title:"系统管理",
-          linkPath:"",
-          menuIcon:"fa fa-cog",
-          subMenu:[
-            {title:"角色管理",linkPath:"/RoleManage"},
-            {title:"操作员管理",linkPath:"/OperatorManage"}
-          ]
-        },
-        {
-          title:"基础数据管理",
-          linkPath:"",
-          menuIcon:"fa fa-bar-chart",
-          subMenu:[
-
-            {title:"证件类型1112",linkPath:"/zzz"},
-            {title:"事件类型",linkPath:"/zzz"},
-            {title:"地区管理",linkPath:"/zzz"},
-              {title:"字典数据",linkPath:"/zzz"},
-              {title:"证件类型",linkPath:"/zzz"},
-              {title:"事件类型",linkPath:"/zzz"},
-              {title:"字典数据",linkPath:"/zzz"},
-              {title:"证件类型",linkPath:"/zzz"},
-              {title:"事件类型",linkPath:"/zzz"},
-              {title:"字典数据",linkPath:"/zzz"}
-          ]
-        },
-        {
-          title:"工作流管理",
-          linkPath:"",
-          menuIcon:"fa fa-sitemap",
-          subMenu:[
-            {title:"流程管理",linkPath:"/zzz"},
-            {title:"环节管理",linkPath:"/zzz"},
-            {title:"活动管理",linkPath:"/zzz"}
-          ]
-        },
-        {
-          title:"工单管理",
-          linkPath:"",
-          menuIcon:"fa fa-book",
-          subMenu:[
-            {title:"事件上报",linkPath:"/zzz"},
-            {title:"12345热线",linkPath:"/zzz"},
-            {title:"领导交办",linkPath:"/zzz"}
-          ]
-        },
-        {
-          title:"应急预案",
-          linkPath:"",
-          menuIcon:"fa fa-bell",
-          subMenu:[
-            {title:"预案管理",linkPath:"/zzz"},
-            {title:"预案流程设置",linkPath:"/zzz"},
-            {title:"预案通知模板",linkPath:"/zzz"}
-          ]
-        },
-        {
-          title:"个人事务",
-          linkPath:"",
-          menuIcon:"fa fa-user",
-          subMenu:[
-            {title:"事件待办",linkPath:"/zzz"},
-            {title:"回访待办",linkPath:"/zzz"},
-            {title:"消息中心",linkPath:"/zzz"}
-          ]
-        },
-        {
-          title:"数据统计",
-          linkPath:"",
-          menuIcon:"fa fa-pie-chart",
-          subMenu:[
-            {title:"签到统计",linkPath:"/zzz"},
-            {title:"求救统计",linkPath:"/zzz"},
-            {title:"求救统计(按网格)",linkPath:"/zzz"}
-          ]
-        }
-      ]
-    }
+    return {}
   },
   mounted: function () {
+
+    // 刷新&赋值
+    if(!this.menus){
+      const menus = ls.get('menus');
+      menus && menus.length > 0 && this.setMenus(menus);
+    }
+
+    // 自定义透明滚动条
     $('.main-menu-scroll').slimScroll({
       width: '100%',
       height: '100%',
@@ -116,22 +44,28 @@ export default {
       alwaysVisible: true
     });
   },
+  computed: {
+    ...mapGetters([
+        'menus'
+    ])
+  },
   methods: {
+    ...mapActions([
+      'setMenus',
+      'pushTab'
+    ]),
     menuSelected: function (indexPath) {
-      if (!validRoleRouter(indexPath)) {
-        return
-      }
       for (var item of this.menus) {
         if (item.subMenu && item.subMenu.length > 0) {
           for (var sItem of item.subMenu) {
             if (sItem.linkPath === indexPath) {
-              this.$store.dispatch('pushTab', {name: indexPath, title: sItem.title});
+              this.pushTab({name: indexPath, title: sItem.title});
               return;
             }
           }
         } else {
           if (item.linkPath === indexPath) {
-            this.$store.dispatch('pushTab', {name: indexPath, title: item.title});
+            this.pushTab({name: indexPath, title: item.title});
             return;
           }
         }

@@ -1,4 +1,4 @@
-import { getAllUserInfo, userLogin, getUserInfo, updateUserInfo } from 'api/user/userAPI'
+import userApi from 'api/user/userAPI'
 
 export default {
   state:{
@@ -23,18 +23,10 @@ export default {
 
   },
   actions: {
-    getAllUserInfo({ commit, state }, params){
-      return new Promise((resolve, reject) => {
-        getAllUserInfo(params).then(response => {
-          resolve(response)
-        }).catch(error => {
-          reject(error)
-        })
-      });
-    },
+
     userLogin({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
-        userLogin(userInfo).then(response => {
+        userApi.userLogin(userInfo).then(response => {
           const data = response.data;
           if(data.result==='success'){
             const msg = data.message;
@@ -54,7 +46,7 @@ export default {
     },
     getUserInfo({ commit }, token) {
       return new Promise((resolve, reject) => {
-        getUserInfo(token).then(response => {
+        userApi.getUserInfo(token).then(response => {
           const data = response.data;
           commit('SET_USER_INFO', data.userInfo);
           resolve(data.userInfo);
@@ -65,7 +57,7 @@ export default {
     },
     updateUserInfo({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
-        updateUserInfo(userInfo).then(response => {
+        userApi.updateUserInfo(userInfo).then(response => {
           const data = response.data;
           commit('SET_USER_INFO', userInfo);
           resolve(userInfo);

@@ -21,7 +21,7 @@ export default{
     return data;
   }],
 
-  //get请求默认参数
+  //默认参数时间戳
   params: {
     datetime: new Date().getTime()
   },

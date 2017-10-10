@@ -27,14 +27,13 @@
 </template>
 
 <script>
-  import { isvalidUsername } from 'utils/validate'
-  import { mapMutations } from 'vuex'
+  import { mockAdmin, mockSuperManager, mockManager } from './../mock/mock'
   export default {
     name: 'PageLogin',
     data() {
       const validateUsername = (rule, value, callback) => {
-        if (!isvalidUsername(value)) {
-          callback(new Error('请输入正确的用户名'))
+        if (value!=='admin' && value!=='superManager' && value!=='manager') {
+          callback(new Error('用户不存在,请使用"admin|superManager|manager"'))
         } else {
           callback()
         }
@@ -60,11 +59,6 @@
       }
     },
     methods: {
-      ...mapMutations({
-          setToken: 'SET_TOKEN',
-          setUserInfo: 'SET_USER_INFO',
-          setRole: 'SET_ROLE'
-      }),
       showPwd() {
         if (this.pwdType === 'password') {
           this.pwdType = ''
@@ -79,7 +73,12 @@
             this.$store.dispatch('userLogin', this.loginForm).then((data) => {
                 this.loading = false;
                 if(data.result === 'success'){
-                  this.$router.push('/');
+                  this.$store.dispatch('getMenus').then((response)=>{
+                    this.$router.push('/MainWelcome');
+                  }).catch((err)=>{
+                      console.error(err);
+                      this.$alert('菜单获取失败！');
+                  });
                 }else{
                   this.$alert(data.message, '提示：', {
                     confirmButtonText: '确定'
@@ -88,21 +87,19 @@
             }).catch((err) => {
               console.error(err);
               this.loading = false;
-              this.$confirm('登录失败，是否启用模拟"admin"账户登陆？', '提示：', {
+              this.$confirm('登录失败，是否模拟"admin"角色登陆？', '提示：', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'error'
               }).then(() => {
-                // 登陆失败后可选择使用本地模拟数据登陆，权限为最高的admin
-                this.setToken('a3578asd21cxx54asd21as5d4as');
-                this.setUserInfo({name:'小明', age:'26'});
-                this.setRole('admin');
-                this.$router.push('/');
+                // 登陆失败后可选择使用本地模拟数据登陆
+                // 设置Token、角色、用户信息、菜单信息
+                mockAdmin();
+                this.$router.push('/MainWelcome');
               }, ()=>{});
             })
           } else {
             console.error('登陆表单校验出错。');
-            return false
           }
         })
       }

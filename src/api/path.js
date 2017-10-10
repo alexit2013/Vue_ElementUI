@@ -4,9 +4,6 @@
 
 export default {
 
-  /* 获取所有用户信息（测试） */
-  GET_ALL_USER_INFO: '/point/getAllUserInfo',
-
   /* 用户登录 */
   USER_LOGIN: '/point/userLogin',
 
@@ -15,5 +12,12 @@ export default {
 
   /* 修改用户信息 */
   UPDATE_USER_INFO: '/point/updateUserInfo',
+
+  /* 获取权限路由 */
+  GET_AUTH_ROUTES: '/point/getAuthRoutes',
+
+  /* 获取菜单 */
+  GET_MENUS: '/point/getMenus',
+
 
 }
