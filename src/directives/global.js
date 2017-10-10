@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017-09-20 0020.
+ * Created by huangxiaofeng on 2017-09-20 0020.
  */
 
 import Vue from 'vue'
@@ -7,12 +7,6 @@ import store from 'store/index'
 import router from 'router/index'
 import './global.css'
 
-/*
- * 点击元素后，添加一个tab
- * 指令参数：{title: '首页', name: '/main'}
- * 示例：
- * <li v-add-tab="{title: '首页', name: '/main'}">点我添加一个名为"首页"的标签页</li>
- */
 Vue.directive('addTab', {
   inserted: (el, binding) => {
     let $el = $(el);
@@ -24,7 +18,7 @@ Vue.directive('addTab', {
   }
 });
 
-/* 菜单展开/收缩 */
+
 Vue.directive('menuShrink', {
     inserted: (el, binding) => {
         const $el = $(el);
@@ -33,28 +27,20 @@ Vue.directive('menuShrink', {
         const $menuContainer = $('.main-menu-container');
         const $mainContainer = $('.main-body-content');
         const $menuShrink = $menuContainer.find('.main-menu-shrink-btn');
-        /*const $titleAndIcon = $menuContainer.find('.el-submenu__title span, .el-submenu__icon-arrow.el-icon-arrow-down');
-        $titleAndIcon.css({'transition':'.3s', 'opacity':1});*/
         $el.click(function () {
-
             if(!store.getters.menuShrink && isBtn){
                 $menuContainer.css('width', '4rem');
                 $mainContainer.css({'width':'95.4%', 'margin-left':'4rem'});
                 $menuShrink.removeClass('rotate-0');
                 $menuShrink.addClass('rotate-90');
                 store.dispatch('changeShrink');
-                /*$titleAndIcon.removeClass('opcity-1');
-                $titleAndIcon.addClass('opcity-0');*/
             }else if(store.getters.menuShrink){
                 $menuContainer.css('width', '12.5rem');
                 $mainContainer.css({'width':'85.4%', 'margin-left':'12.5rem'});
                 $menuShrink.removeClass('rotate-90');
                 $menuShrink.addClass('rotate-0');
                 store.dispatch('changeShrink');
-                /*$titleAndIcon.removeClass('opcity-0');
-                $titleAndIcon.addClass('opcity-1');*/
             }
-
         });
     }
 });
