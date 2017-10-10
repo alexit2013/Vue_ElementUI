@@ -234,8 +234,7 @@ export default {
       });
     },
     onSubmit() {  // 表单提交事件
-
-        alert(this.roleForm.userName);
+        alert('submit');
     },
     resetForm(formName) {  // 表单重置事件
       this.$refs[formName].resetFields();

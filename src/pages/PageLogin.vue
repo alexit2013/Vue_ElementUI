@@ -90,6 +90,7 @@
               this.$confirm('登录失败，是否模拟"admin"角色登陆？', '提示：', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
+                closeOnClickModal: false,
                 type: 'error'
               }).then(() => {
                 // 登陆失败后可选择使用本地模拟数据登陆

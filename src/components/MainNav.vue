@@ -5,9 +5,9 @@
 
       <div class="main-header-menus">
 
-        <el-menu theme="dark" default-active="0" :unique-opened="true" :router="true" class="el-menu-demo" mode="horizontal">
+        <el-menu theme="dark" default-active="0" :unique-opened="true" :router="false" class="el-menu-demo" mode="horizontal">
 
-          <el-menu-item index="1"><i class="el-icon-document vam fs-18" aria-hidden="true"></i><span class="vam">事件待办</span><el-badge :value="12" class="badge-item"></el-badge></el-menu-item>
+          <el-menu-item index="/RoleManage"><i class="el-icon-document vam fs-18" aria-hidden="true"></i><span class="vam">事件待办</span><el-badge :value="12" class="badge-item"></el-badge></el-menu-item>
 
           <el-menu-item index="3"><i class="el-icon-star-off vam fs-18" aria-hidden="true"></i><span class="vam">回访待办</span><el-badge :value="0" class="badge-item"></el-badge></el-menu-item>
 
@@ -16,8 +16,7 @@
           <el-submenu class="user-img" index="5">
             <template slot="title">Sunshine</template>
             <el-menu-item index="5-1"><i  class="fa fa-pencil" aria-hidden="true"></i>修改密码</el-menu-item>
-            <el-menu-item index="5-2"><i class="fa fa-repeat" aria-hidden="true"></i>更换账号</el-menu-item>
-            <el-menu-item index="5-3"><i class="fa fa-sign-out" aria-hidden="true"></i>退出系统</el-menu-item>
+            <el-menu-item index="5-2" @click="outSystem"><i class="fa fa-sign-out" aria-hidden="true"></i>退出系统</el-menu-item>
           </el-submenu>
 
         </el-menu>
@@ -35,6 +34,21 @@ export default {
   data () {
     return {
       menuCollapse: false
+    }
+  },
+  methods: {
+    outSystem: function () {
+      this.$confirm('是否注销当前登录并退出？', '提示：', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        closeOnClickModal: false,
+        type: 'warning'
+      }).then(() => {
+        ls.rm('Token');
+        ls.rm('menus');
+        ls.rm('tabs');
+        this.$router.push('/PageLogin');
+      }, ()=>{});
     }
   }
 }
